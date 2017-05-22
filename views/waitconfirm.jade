@@ -1,0 +1,43 @@
+extends layout
+block content
+    h1= title
+    p Waiting payment confirmation for id request: #{purchaseid}
+
+    p
+        strong(id="state")
+
+    p
+        button(type="custom",id="btnpurchase").btn Purchase
+        #div1
+
+    p
+        a(href="/welcome?uid=#{userid}") back
+
+    script(src="/javascripts/socket.io.js")
+    script(src='/javascripts/jquery.min.js')
+
+    script.
+        var socket = io();
+        socket.emit('purchaseid', '#{purchaseid}');
+        socket.on('msg', function(msg) {
+            $("#state").text(msg);
+        });
+
+        $("#btnpurchase").click(function () {
+            var url = '/purchaseinfo?token=#{token}&purchaseid=#{purchaseid}';
+            $.ajax({
+                url: url, success: function (result) {
+
+                    var html = 'purchaseid: ' + result.purchaseid + '<br>' +
+                            'debited_userid: ' + result.debited_userid + '<br>' +
+                            'amount: ' + JSON.stringify(result.amount) + '<br>' +
+                            'description: ' + result.description + '<br>' +
+                            'status: ' + result.status + '<br>' +
+                            'update: ' + result.update + '<br>' +
+                            'create: ' + result.create + '<br>'
+
+                    $("#div1").html(html);
+                }
+            });
+        });
+

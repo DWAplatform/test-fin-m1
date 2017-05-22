@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .container
+    h1= title
+    p Welcome #{name} #{surname} (#{email})
+
+    form(name="add-estimation", method="post", action='/checkout').formblock
+        input(type="hidden" name="userid" value="#{userid}")
+        input(type="hidden" name="token" value="#{token}")
+
+        .row
+            .col-xs-6.col-sm-6.col-md-6
+                .form-group
+                    input(type="text", name="description",placeholder="Product Description",required="true").form-control
+        .row
+            .col-xs-2.col-sm-2.col-md-2
+                .form-group
+                    input(type="number", name="amount",placeholder="Price in EUR cent",required="true").form-control
+
+        .row
+            .col-xs-6.col-sm-6.col-md-6
+                button(type="submit").btn.btn-lg.btn-primary.btn-block.btn-signin Checkout
+
