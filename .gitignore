@@ -1,4 +1,5 @@
 node_modules
 .idea
 test-fin-m1.iml
+npm-debug.log
 

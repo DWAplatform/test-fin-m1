@@ -81,7 +81,9 @@ router.get('/callback', function(req, res) {
               users.set(body.userid, {payload: body, token: token.token.access_token});
               res.redirect('/welcome?uid=' + body.userid)
           } else {
-              console.error('Verify Credentials Error', error.message);
+              if (error) {
+                  console.error('Verify Credentials Error', error.message);
+              }
               return res.json('Verify Credentials Error');
           }
       }
@@ -135,7 +137,7 @@ router.post('/checkout', function(req,res) {
         }
         else {
             console.log(error);
-            console.log(response.statusCode);
+            if (response) console.log(response.statusCode);
             res.send(body);
         }
       }
