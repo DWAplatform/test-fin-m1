@@ -1,22 +1,35 @@
 extends layout
 block content
-    h1= title
-    p Waiting payment confirmation for id request: #{purchaseid}
+    .container
+        .row
+            .col-md-offset-3.image
+                img(width="64" height= "64" src= "resourses/business_icon.png")
+            font(color="#003153" size="8") Business Srl
 
-    p
-        strong(id="state")
+            .row
+                .col-md-offset-2.marginTop
+                    h4 Waiting payment confirmation for id request: #{purchaseid}
+            .row
+                .col-md-offset-2.marginTop.col-md-2
+                    p Current Payment State:
+                .marginTop.col-md-1
+                    strong#state
 
-    p
-        button(type="custom",id="btnpurchase").btn Purchase
-        #div1
-
-    p
-        a(href="/welcome?uid=#{userid}") back
+            .row
+                .col-md-offset-2.col-md-3.marginTop
+                    button(type="custom",id="btnpurchase").btn.btn-lg.btn-block.btn-signin Purchasing state
+                .col-md-offset-2.col-md-6.marginTop
+                    p.marginTop
+                        strong#div1
+            .row
+                .col-md-offset-2.col-md-2.marginTop
+                    button(type="submit", onclick="window.location.href='/welcome?uid=#{userid}'").btn.btn-lg.btn-primary.btn-block.btn-signin back
 
     script(src="/javascripts/socket.io.js")
     script(src='/javascripts/jquery.min.js')
 
     script.
+        $("#state").text("CONFIRM_PURCHASE");
         var socket = io();
         socket.emit('purchaseid', '#{purchaseid}');
         socket.on('msg', function(msg) {

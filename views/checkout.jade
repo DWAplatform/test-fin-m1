@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    .container
+        .row
+            .col-lg-offset-3.image
+                img(width="64" height= "64" src= "resourses/business_icon.png")
+            font(color="#003153" size="8") Business Srl
+
+    form(name="add-estimation", method="post", action='/waitconfirm').formblock
+        input(type="hidden" name="userid" value="#{userid}")
+        input(type="hidden" name="token" value="#{token}")
+
+        .row
+            .col-lg-offset-3.col-xs-4.col-sm-4.col-md-4.col-lg-4.marginTop
+                .form-group
+                    input(type="text", name="description",placeholder="Product Description",required="true").form-control
+        .row
+            .col-lg-offset-3.col-xs-4.col-sm-4.col-md-4.col-lg-4
+                .form-group
+                    input(type="number", name="amount",placeholder="Price in EUR cent",required="true").form-control
+
+        .row
+            .col-lg-offset-3.col-xs-4.col-sm-4.col-md-4.col-lg-4
+                button(type="submit").btn.btn-lg.btn-primary.btn-block.btn-signin Purchase
+

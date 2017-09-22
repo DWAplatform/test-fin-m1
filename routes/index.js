@@ -98,7 +98,7 @@ router.get('/welcome', function(req, res) {
     var token = users.get(uid).token;
 
     res.render('welcome', {
-        title: 'Checkout Page',
+        title: 'Welcome Page',
         name: user.name,
         surname: user.surname,
         email: user.email,
@@ -106,8 +106,19 @@ router.get('/welcome', function(req, res) {
         token: token});
 });
 
+// Checkout Page.
+router.post('/checkout', function(req, res) {
+    const userid = req.body.userid;
+    var token = req.body.token;
+
+    res.render('checkout', {
+        title: 'Checkout Page',
+        userid: userid,
+        token: token});
+});
+
 // Post checkout data
-router.post('/checkout', function(req,res) {
+router.post('/waitconfirm', function(req,res) {
     var url = dwaapi_baseurl + '/rest/v1/' + clientid + '/fin/m1/purchases';
 
     var data = {

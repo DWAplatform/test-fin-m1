@@ -1,8 +1,14 @@
 extends layout
 
 block content
-  h1 Fintech Model 1
-  p Welcome to the Fintech Model 1 test
-  a(href="/auth",role="button").btn.btn-lg.btn-success
-      span Log in with
-      strong &nbsp;DWA Fintech
+    .container
+        .row
+            .col-lg-offset-3.image
+                img(width="64" height= "64" src= "resourses/business_icon.png")
+            font(color="#003153" size="8") Business Srl
+
+        .row.marginTop
+            .col-lg-offset-3.col-lg-4
+                a(href="/auth",role="button").btn.btn-lg.btn-success
+                      span Log in with
+                      strong &nbsp;DWA Fintech

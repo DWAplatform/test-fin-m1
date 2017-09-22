@@ -1,24 +1,28 @@
 extends layout
 
 block content
-  .container
-    h1= title
-    p Welcome #{name} #{surname} (#{email})
-
-    form(name="add-estimation", method="post", action='/checkout').formblock
-        input(type="hidden" name="userid" value="#{userid}")
-        input(type="hidden" name="token" value="#{token}")
-
+    .container
         .row
-            .col-xs-6.col-sm-6.col-md-6
-                .form-group
-                    input(type="text", name="description",placeholder="Product Description",required="true").form-control
-        .row
-            .col-xs-2.col-sm-2.col-md-2
-                .form-group
-                    input(type="number", name="amount",placeholder="Price in EUR cent",required="true").form-control
+            .col-lg-offset-3.image
+                img(width="64" height= "64" src= "resourses/business_icon.png")
+            font(color="#003153" size="8") Business Srl
 
-        .row
-            .col-xs-6.col-sm-6.col-md-6
-                button(type="submit").btn.btn-lg.btn-primary.btn-block.btn-signin Checkout
+            .row
+                .col-lg-offset-3
+                    h2 Welcome in your profile
+                .col-lg-offset-3.col-lg-4
+                    h4 User profile:
+                    .border
+                        p Name:
+                            input(type="text",value="#{name}", disabled=true, style="text-align:right;").form-control
+                        p Surname:
+                            input(type="text",value="#{surname}", disabled=true, style="text-align:right;").form-control
+                        p Email:
+                            input(type="text",value="#{email}", disabled=true, style="text-align:right;").form-control
+        form(name="add-estimation", method="post", action='/checkout').formblock
+            input(type="hidden" name="userid" value="#{userid}")
+            input(type="hidden" name="token" value="#{token}")
 
+            .row
+                .col-lg-offset-3.col-lg-4.marginTop
+                    button(type="submit").btn.btn-lg.btn-primary.btn-block.btn-signin Checkout
